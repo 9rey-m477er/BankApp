@@ -1,22 +1,24 @@
 package org.example.Util;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
 public class DatabaseConnection {
+
     private static final String URL = System.getenv("DB_URL");
     private static final String USER = System.getenv("DB_USER");
     private static final String PASSWORD = System.getenv("DB_PASSWORD");
 
-    static{
+    static {
         try{
             String driver = System.getenv().getOrDefault("DB_DRIVER", "org.postgresql.Driver");
             Class.forName(driver);
-        }catch(ClassNotFoundException e){
-            throw new ExceptionInInitializerError("PostgreSQL driver not foudn: " + e.getMessage());
+        }catch (ClassNotFoundException e){
+            throw new ExceptionInInitializerError("PostgreSQL Driver not found: " + e.getMessage());
         }
     }
+
     private DatabaseConnection() {}
 
     public static Connection getConnection() throws SQLException {
@@ -25,4 +27,5 @@ public class DatabaseConnection {
         }
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
+
 }
