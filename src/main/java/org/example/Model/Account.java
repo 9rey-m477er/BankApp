@@ -15,19 +15,17 @@ public class Account {
     public Account() {
     }
 
-    public Account(int id, String username, String password, float balance, boolean employee) {
+    public Account(int id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.balance = balance;
-        this.employee = employee;
+        this.balance = 0;
     }
 
-    public Account(String username, String password, float balance, boolean employee) {
+    public Account(String username, String password) {
         this.username = username;
         this.password = password;
-        this.balance = balance;
-        this.employee = employee;
+        this.balance = 0;
     }
 
     public int getId() {

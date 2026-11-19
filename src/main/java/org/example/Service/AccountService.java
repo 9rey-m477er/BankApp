@@ -23,4 +23,10 @@ public class AccountService{
         }
         return acDAO.addAccount(account);
     }
+
+    public Account createAccount(String name, String password) throws SQLException{
+        Account a = new Account(name, password);
+        int id = acDAO.addAccount(a).getId();
+        return a;
+    }
 }

@@ -18,7 +18,7 @@ public class AccountDAO {
             ResultSet rs = ps.getGeneratedKeys();
             if(rs.next()){
                 int generated_account_id = (int) rs.getLong(1);
-                return new Account(generated_account_id, account.getUsername(), account.getPassword(), 0,false);
+                return new Account(generated_account_id, account.getUsername(), account.getPassword());
             }
 
         } catch (Exception e) {
