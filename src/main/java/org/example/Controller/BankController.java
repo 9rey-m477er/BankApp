@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import org.example.DAO.AccountDAO;
 import org.example.Model.Account;
+import org.example.Model.Customer;
 import org.example.Service.*;
 
 public class BankController {
@@ -21,7 +22,34 @@ public class BankController {
         System.out.printf("Enter new password:");
         String password = sc.nextLine().trim();
         try{
-            Account a = as.createAccount(name, password);
+            Account a = as.createAccount(name);
+            System.out.println("Account created");
+            //System.out.printf(a.toString());
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+    public void newCustomer(){
+        System.out.printf("Enter customer name: ");
+        String name = sc.nextLine().trim();
+        System.out.printf("Enter new password: ");
+        String password = sc.nextLine().trim();
+        try{
+            Customer c = cs.createCustomer(name, password);
+            System.out.println("Customer created");
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void login(){
+        System.out.printf("Enter username:");
+        String name = sc.nextLine().trim();
+        System.out.printf("Enter password:");
+        String password = sc.nextLine().trim();
+
+        try{
+            Account a = as.login(name, password);
             System.out.printf("Account created");
             System.out.printf(a.toString());
         }catch(SQLException e){

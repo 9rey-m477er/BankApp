@@ -22,26 +22,47 @@ public class Main {
 
             switch (input) {
                 case "1":{ //Customer Registration Menu
-
-                    /*System.out.println("Enter a username: ");
-                    String username = sc.nextLine().trim();
-                    System.out.println("Enter a password: ");
-                    String password = sc.nextLine().trim();*/
-                    bc.handleCreateAccount();
+                    bc.newCustomer();
                 break;
                 }
 
-                case "2":{ //Customer Registration Menu
+                case "2":{ //Employee Menu
                     active[1] = true;
                     while(active[1]){
+                        System.out.println("Employee View");
+                        System.out.println("1. View Account Information");
+                        System.out.println("2. View Pending Applications");
+                        System.out.println("3. Exit");
 
+                        String employeeInput = sc.nextLine().trim();
+                        switch(employeeInput){
+                            case "1":{
+                                System.out.println("Enter Account ID: ");
+                                int targetID = sc.nextInt();
+
+                                break;
+                            }
+                            case "2":{
+                                break;
+                            }
+                            case "3": {
+                                active[1] = false;
+                                break;
+                            }
+
+                            default:{
+                                System.out.println("Invalid Input");
+                                break;
+                            }
+                        }
                     }
                     break;
                 }
-                case "3":{ //Employee Menu
+                case "3":{ //Customer Login
                     active[2] = true;
                     while(active[2]){
-
+                        bc.login();
+                        active[2] = false;
                     }
                     break;
                 }

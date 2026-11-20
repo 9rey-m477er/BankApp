@@ -5,9 +5,9 @@ public class Account {
 
     String username;
 
-    String password;
-
     float balance;
+
+    String status;
 
     boolean employee;
 
@@ -15,16 +15,16 @@ public class Account {
     public Account() {
     }
 
-    public Account(int id, String username, String password) {
+    public Account(int id, String username) {
         this.id = id;
         this.username = username;
-        this.password = password;
+        this.status = "Pending";
         this.balance = 0;
     }
 
-    public Account(String username, String password) {
+    public Account(String username) {
         this.username = username;
-        this.password = password;
+        this.status = "Pending";
         this.balance = 0;
     }
 
@@ -44,14 +44,6 @@ public class Account {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public float getBalance() {
         return balance;
     }
@@ -66,5 +58,13 @@ public class Account {
 
     public void setEmployee(boolean employee) {
         this.employee = employee;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

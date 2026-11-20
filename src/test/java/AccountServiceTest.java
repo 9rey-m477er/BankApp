@@ -1,4 +1,5 @@
 import org.example.Service.AccountService;
+import org.example.Service.CustomerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,5 +18,9 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class AccountServiceTest {
+    @Mock
+    private AccountService as;
+    private CustomerService cs;
+
 
 }

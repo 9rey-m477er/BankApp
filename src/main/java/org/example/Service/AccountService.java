@@ -13,19 +13,19 @@ public class AccountService{
         acDAO = new AccountDAO();
     }
 
-    public Account login(Account ac) throws SQLException {
-        return acDAO.login(ac.getUsername(), ac.getPassword());
+    public Account login(String user, String password) throws SQLException {
+        return acDAO.login(user, password);
     }
 
     public Account addAccount(Account account) throws SQLException {
-        if(account.getUsername().equals("") || account.getPassword().length() < 4){
+        if(account.getUsername().equals("")){
             return null;
         }
         return acDAO.addAccount(account);
     }
 
-    public Account createAccount(String name, String password) throws SQLException{
-        Account a = new Account(name, password);
+    public Account createAccount(String name) throws SQLException{
+        Account a = new Account(name);
         int id = acDAO.addAccount(a).getId();
         return a;
     }
