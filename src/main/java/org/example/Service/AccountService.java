@@ -61,5 +61,8 @@ public class AccountService{
     public boolean denyStatus(int id) throws SQLException {
         return acDAO.deny(id);
     }
+    public Account getAccountByID(int id) throws SQLException {
+        return acDAO.getAccountByID(id);
+    }
 
 }

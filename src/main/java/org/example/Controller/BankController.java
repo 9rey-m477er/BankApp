@@ -94,10 +94,18 @@ public class BankController {
         return as.deposit(accountChoice(c),amount);
     }
     public boolean transferHandler(Customer c) throws SQLException {
-        System.out.println("Enter an amount: ");
-        String input = sc.nextLine();
+        System.out.println("Enter an amount you'd like to transfer: ");
+        String input = sc.nextLine().trim();
         float amount = Float.parseFloat(input);
-        return as.withdraw(accountChoice(c),amount);
+        List<Account> owned = as.getCustomerAccounts(c.getId());
+        System.out.println("Pick an account to withdraw money from: ");
+        Account withdraw = accountChoice(c);
+        System.out.println("Enter accountID to send the money to: ");
+        //input = sc.nextLine().trim();
+        //int rID = Integer.parseInt(input);
+        Account recipient = accountChoice(c);
+        as.withdraw(withdraw,amount);
+        return as.deposit(recipient,amount);
     }
 
     public List<Account> customerAccountsHandler(Customer c) throws SQLException {
