@@ -17,4 +17,8 @@ public class CustomerService {
         int id = cDAO.addCustomer(c).getId();
         return c;
     }
+
+    public Customer login(String user, String password) throws SQLException {
+        return cDAO.login(user, password);
+    }
 }

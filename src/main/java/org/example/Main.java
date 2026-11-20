@@ -1,20 +1,23 @@
 package org.example;
 import org.example.Controller.BankController;
+import org.example.Model.Customer;
+
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
     private final Scanner sc = new Scanner(System.in);
     private final BankController bc = new BankController(sc);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         new Main().start();
     }
 
-    public void start() {
+    public void start() throws SQLException {
         boolean[] active = {true, false, false};
         while (active[0]) {
             System.out.println("Bank Application");
-            System.out.println("1. Customer Registration");
+            System.out.println("1. New Customer Registration");
             System.out.println("2. Employee View");
             System.out.println("3. Customer Login");
             System.out.println("4. Exit");
@@ -22,7 +25,7 @@ public class Main {
 
             switch (input) {
                 case "1":{ //Customer Registration Menu
-                    bc.newCustomer();
+                    bc.newCustomerHandler();
                 break;
                 }
 
@@ -36,20 +39,18 @@ public class Main {
 
                         String employeeInput = sc.nextLine().trim();
                         switch(employeeInput){
-                            case "1":{
-                                System.out.println("Enter Account ID: ");
-                                int targetID = sc.nextInt();
-
+                            case "1":{ //View Account Info
+                                bc.getAccountInformationHandler();
                                 break;
                             }
-                            case "2":{
+                            case "2":{//Pending Applications
+                                bc.PendingHandler();
                                 break;
                             }
-                            case "3": {
+                            case "3": {//Exit
                                 active[1] = false;
                                 break;
                             }
-
                             default:{
                                 System.out.println("Invalid Input");
                                 break;
@@ -60,9 +61,44 @@ public class Main {
                 }
                 case "3":{ //Customer Login
                     active[2] = true;
+                    Customer c = bc.login();
                     while(active[2]){
-                        bc.login();
-                        active[2] = false;
+                        System.out.println("Customer Service");
+                        System.out.println("1. Open New Account");
+                        System.out.println("2. Withdraw");
+                        System.out.println("3. Deposit");
+                        System.out.println("4. Transfer Funds Between Accounts");
+                        System.out.println("5. Exit");
+
+                        String customerInput = sc.nextLine().trim();
+                        switch(customerInput){
+                            case "1":{ //Open New Account
+                                    bc.createAccountHandler(c);
+
+                                break;
+                            }
+                            case "2":{//Withdraw
+                                bc.withdrawHandler(c);
+                                break;
+                            }
+                            case "3":{//Deposit
+                                bc.depositHandler(c);
+                                break;
+                            }
+                            case "4":{//Transfer Funds
+                                bc.transferHandler(c);
+                                break;
+                            }
+                            case "5": {//Exit
+                                active[2] = false;
+                                break;
+                            }
+                            default:{
+                                System.out.println("Invalid Input");
+                                break;
+                            }
+                        }
+
                     }
                     break;
                 }

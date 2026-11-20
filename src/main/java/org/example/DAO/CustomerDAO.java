@@ -26,4 +26,22 @@ public class CustomerDAO {
         }
         return null;
     }
+
+    public Customer login(String username, String password) throws SQLException {
+        Connection connection = DatabaseConnection.getConnection();
+        try{
+            String sql = "Select * FROM customers where (name, password) = (?,?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                Customer c = new Customer(rs.getInt("id"), rs.getString("name"), rs.getString("password"));
+                return c;
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 }
